@@ -17,7 +17,7 @@
 <img src="https://img.shields.io/badge/-CodeRabbit-FF5100?style=for-the-badge&logo=coderabbit&logoColor=white" />
 </div>
 
-  <h3 align="center">Subscription Management | Mobile Appliction</h3>
+  <h3 align="center">Subscription Management | React Native App</h3>
 
    <div align="center">
      Build this project step by step with our detailed tutorial on <a href="https://www.youtube.com/watch?v=XUkNR-JfHwo" target="_blank"><b>JavaScript Mastery</b></a> YouTube. Join the JSM family!
