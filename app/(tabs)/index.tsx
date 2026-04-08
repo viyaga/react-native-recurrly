@@ -12,7 +12,7 @@ import ActiveBotCard from "@/components/ActiveBotCard";
 import BotCard from "@/components/BotCard";
 import CreateBotModal from "@/components/CreateBotModal";
 import {useState, useMemo} from "react";
-import { useUser } from '@clerk/expo';
+import { useUser } from '@/src/context/AuthContext';
 import { usePostHog } from 'posthog-react-native';
 import { useBotStore } from "@/lib/botStore";
 import { ACTIVE_BOTS } from "@/constants/data";
@@ -54,8 +54,8 @@ export default function App() {
         });
     };
 
-    // Get user display name: firstName, fullName, or email
-    const displayName = user?.firstName || user?.fullName || user?.emailAddresses[0]?.emailAddress || 'User';
+    // Get user display name: custom name field or email
+    const displayName = user?.name || user?.email || 'User';
 
     return (
         <SafeAreaView className="flex-1 bg-background p-5">

@@ -12,7 +12,7 @@
 <img src="https://img.shields.io/badge/-Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" />
 <img src="https://img.shields.io/badge/-Express-000000?style=for-the-badge&logo=express&logoColor=white" />
 <img src="https://img.shields.io/badge/-MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" /><br/>
-<img src="https://img.shields.io/badge/-Clerk-6C47FF?style=for-the-badge&logo=clerk&logoColor=white" />
+<img src="https://img.shields.io/badge/-Payload_CMS-262626?style=for-the-badge&logo=payloadcms&logoColor=white" />
 <img src="https://img.shields.io/badge/-PostHog-F0AD4E?style=for-the-badge&logo=posthog&logoColor=white" />
 <img src="https://img.shields.io/badge/-CodeRabbit-FF5100?style=for-the-badge&logo=coderabbit&logoColor=white" />
 </div>
@@ -63,7 +63,7 @@ If you're getting started and need assistance or face any bugs, join our active 
 * **[MongoDB](https://www.mongodb.com/)** is a NoSQL database used to store user data and subscription details. Its flexible document-based structure is ideal for handling the evolving data needs of a subscription management platform.
 
 ### Infrastructure & Tools
-* **[Clerk](https://jsm.dev/nativesub-clerk)** provides a complete suite of authentication and user management tools. It handles secure sign-ins, session management, and integrates seamlessly with billing workflows.
+* **Custom Auth** provides a complete suite of authentication and user management tools interfacing with your **Payload CMS** API. It handles secure sign-ins and session management with local JWT storage.
 * **[PostHog](https://jsm.dev/nativesub-posthog)** is an all-in-one platform for product analytics. It helps track user behavior, feature usage, and conversion rates, giving you the data needed to improve the app based on real-world usage.
 * **[CodeRabbit](https://jsm.dev/nativesub-coderabbit)** is an AI-powered code review assistant. It provides deep, context-aware feedback on pull requests, helping maintain high code quality and catching potential bugs before they reach production.
 
@@ -77,7 +77,7 @@ If you're getting started and need assistance or face any bugs, join our active 
 
 👉 **Scheduled Email Reminders**: Never get surprised by a renewal again with automated, timely notifications that alert users before a billing date arrives.
 
-👉 **Secure Authentication**: A seamless onboarding experience using Clerk, providing enterprise-grade security for user sign-ups, logins, and profile management.
+👉 **Secure Authentication**: A seamless onboarding experience using a custom Authentication provider, providing secure user sign-ups, logins, and profile management integrated with your backend.
 
 👉 **Native Navigation**: A custom-built tab navigation system designed to provide a fluid, high-performance experience that feels native to both iOS and Android.
 
@@ -161,7 +161,7 @@ Create a new file named `.env` in the root of your project and add the following
 
 
 ```env
-EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=
+EXPO_PUBLIC_PAYLOAD_API_URL=
 POSTHOG_PROJECT_TOKEN=
 POSTHOG_HOST=https://us.i.posthog.com
 ```

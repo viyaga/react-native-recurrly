@@ -8,7 +8,7 @@ This document outlines the core technologies used in the Recurrly application an
 2.  **Routing:** Expo Router for file-based navigation, simplifying route management and deep linking.
 3.  **Language:** TypeScript for strong typing, enhancing code quality, developer experience, and maintainability.
 4.  **Styling:** NativeWind, enabling the use of Tailwind CSS classes directly in React Native components for rapid and consistent UI development.
-5.  **Authentication:** Clerk for secure user authentication, sign-up, sign-in, and session management.
+5.  **Authentication:** Custom AuthContext using Payload CMS API for secure user authentication, sign-up, sign-in, and session management.
 6.  **Analytics:** PostHog for comprehensive product analytics, event capturing, user identification, and error tracking.
 7.  **State Management:** Zustand for efficient and lightweight global state management.
 8.  **Date Handling:** Day.js for all date and time manipulation and formatting.
@@ -18,7 +18,7 @@ This document outlines the core technologies used in the Recurrly application an
 
 *   **UI/Styling:** All styling must be done using **NativeWind** (Tailwind CSS classes). Avoid inline styles or `StyleSheet.create` unless absolutely necessary for complex animations or platform-specific overrides not covered by NativeWind.
 *   **Navigation:** Use **Expo Router** for all navigation within the application. Follow its conventions for file-based routing and dynamic routes.
-*   **Authentication:** **Clerk** is the sole provider for user authentication, sign-up, sign-in, and session management. Do not implement custom authentication logic.
+*   **Authentication:** **Custom AuthContext** (stored in `src/context/AuthContext.tsx`) is the sole provider for user authentication, sign-up, sign-in, and session management. It interfaces with a Payload CMS API. Do not use Clerk.
 *   **Analytics & Event Tracking:** **PostHog** must be used for all product analytics, event capturing, user identification, and error tracking. Ensure PostHog keys are loaded via environment variables.
 *   **State Management:** For global or shared application state, prefer **Zustand**. For local component state, use React's `useState` and `useReducer` hooks.
 *   **Date & Time Operations:** All date and time formatting, parsing, and manipulation should be handled using **Day.js**.

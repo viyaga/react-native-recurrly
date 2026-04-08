@@ -1,13 +1,13 @@
 import { Text, View, Pressable, Image } from 'react-native'
 import { SafeAreaView as RNSafeAreaView } from "react-native-safe-area-context";
 import { styled } from "nativewind";
-import { useClerk, useUser } from '@clerk/expo';
+import { useAuth, useUser } from '@/src/context/AuthContext';
 import images from '@/constants/images';
 import { usePostHog } from 'posthog-react-native';
 const SafeAreaView = styled(RNSafeAreaView);
 
 const Settings = () => {
-    const { signOut } = useClerk();
+    const { signOut } = useAuth();
     const { user } = useUser();
     const posthog = usePostHog();
 
@@ -23,8 +23,8 @@ const Settings = () => {
         }
     };
 
-    const displayName = user?.firstName || user?.fullName || user?.emailAddresses[0]?.emailAddress || 'User';
-    const email = user?.emailAddresses[0]?.emailAddress;
+    const displayName = user?.name || user?.email || 'User';
+    const email = user?.email;
 
     return (
         <SafeAreaView className="flex-1 bg-background p-5">

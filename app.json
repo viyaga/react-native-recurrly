@@ -52,7 +52,6 @@
           ]
         }
       ],
-      "@clerk/expo",
       "expo-secure-store"
     ],
     "experiments": {
