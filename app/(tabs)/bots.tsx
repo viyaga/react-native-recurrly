@@ -2,33 +2,33 @@ import {Text, View, TextInput, FlatList} from 'react-native'
 import {SafeAreaView as RNSafeAreaView} from "react-native-safe-area-context";
 import { styled } from "nativewind";
 import { useState } from "react";
-import SubscriptionCard from "@/components/SubscriptionCard";
-import { useSubscriptionStore } from "@/lib/subscriptionStore";
+import BotCard from "@/components/BotCard";
+import { useBotStore } from "@/lib/botStore";
 
 const SafeAreaView = styled(RNSafeAreaView);
 
-const Subscriptions = () => {
+const Bots = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [expandedId, setExpandedId] = useState<string | null>(null);
-    const { subscriptions } = useSubscriptionStore();
+    const { bots } = useBotStore();
 
-    const filteredSubscriptions = subscriptions.filter((subscription) =>
-        subscription.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        subscription.category?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        subscription.plan?.toLowerCase().includes(searchQuery.toLowerCase())
+    const filteredBots = bots.filter((bot) =>
+        bot.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        bot.category?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        bot.strategy?.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     return (
         <SafeAreaView className="flex-1 bg-background">
             <FlatList
-                data={filteredSubscriptions}
+                data={filteredBots}
                 keyExtractor={(item) => item.id}
                 ListHeaderComponent={
                     <View className="px-5 pt-5">
-                        <Text className="text-3xl font-bold text-dark mb-5">Subscriptions</Text>
+                        <Text className="text-3xl font-bold text-dark mb-5">Bots</Text>
                         <TextInput
                             className="bg-card rounded-xl px-4 py-3 text-dark mb-4"
-                            placeholder="Search subscriptions..."
+                            placeholder="Search bots..."
                             placeholderTextColor="#666"
                             value={searchQuery}
                             onChangeText={setSearchQuery}
@@ -36,7 +36,7 @@ const Subscriptions = () => {
                     </View>
                 }
                 renderItem={({ item }) => (
-                    <SubscriptionCard
+                    <BotCard
                         {...item}
                         expanded={expandedId === item.id}
                         onPress={() => setExpandedId(expandedId === item.id ? null : item.id)}
@@ -50,4 +50,4 @@ const Subscriptions = () => {
         </SafeAreaView>
     )
 }
-export default Subscriptions
+export default Bots

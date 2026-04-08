@@ -1,0 +1,5 @@
+﻿app/(tabs)/index.tsx(52,13): error TS2322: Type 'string | undefined' is not assignable to type 'JsonType'.
+  Type 'undefined' is not assignable to type 'JsonType'.
+app/(tabs)/index.tsx(53,13): error TS2322: Type 'string | undefined' is not assignable to type 'JsonType'.
+  Type 'undefined' is not assignable to type 'JsonType'.
+src/config/posthog.ts(23,3): error TS2353: Object literal may only specify known properties, and 'debug' does not exist in type 'PostHogOptions'.

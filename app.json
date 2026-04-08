@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "react_native-recurrly",
-    "slug": "react_native-recurrly",
+    "name": "brakoutx-ai-trading-bot",
+    "slug": "brakoutx-ai-trading-bot",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "reactnativerecurrly",
+    "scheme": "brakoutxaitradingbot",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {

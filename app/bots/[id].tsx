@@ -3,23 +3,23 @@ import {Link, useLocalSearchParams} from "expo-router";
 import { usePostHog } from 'posthog-react-native';
 import { useEffect } from 'react';
 
-const SubscriptionDetails = () => {
+const BotDetails = () => {
     const { id } = useLocalSearchParams<{ id: string }>();
     const posthog = usePostHog();
 
     useEffect(() => {
         // Only capture if id is valid
         if (id && typeof id === 'string' && id.trim()) {
-            posthog.capture('subscription_details_viewed', { subscription_id: id });
+            posthog.capture('bot_details_viewed', { bot_id: id });
         }
     }, [id, posthog]);
 
     return (
         <View>
-            <Text>Subscription Details: {id}</Text>
+            <Text>Bot Details: {id}</Text>
             <Link href="/">Go back</Link>
         </View>
     )
 }
 
-export default SubscriptionDetails
+export default BotDetails

@@ -145,8 +145,8 @@ const SignIn = () => {
                                         <Text className="auth-logo-mark-text">R</Text>
                                     </View>
                                     <View>
-                                        <Text className="auth-wordmark">Recurrly</Text>
-                                        <Text className="auth-wordmark-sub">SUBSCRIPTIONS</Text>
+                                        <Text className="auth-wordmark">BrakoutX AI</Text>
+                                        <Text className="auth-wordmark-sub">TRADING BOT</Text>
                                     </View>
                                 </View>
                                 <Text className="auth-title">Verify your identity</Text>
@@ -229,13 +229,13 @@ const SignIn = () => {
                                     <Text className="auth-logo-mark-text">R</Text>
                                 </View>
                                 <View>
-                                    <Text className="auth-wordmark">Recurrly</Text>
-                                    <Text className="auth-wordmark-sub">SUBSCRIPTIONS</Text>
+                                    <Text className="auth-wordmark">BrakoutX AI</Text>
+                                    <Text className="auth-wordmark-sub">TRADING BOT</Text>
                                 </View>
                             </View>
                             <Text className="auth-title">Welcome back</Text>
                             <Text className="auth-subtitle">
-                                Sign in to continue managing your subscriptions
+                                Sign in to continue managing your trading bots
                             </Text>
                         </View>
 

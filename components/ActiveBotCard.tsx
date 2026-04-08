@@ -2,15 +2,15 @@ import {View, Text, Image} from 'react-native'
 import React from 'react'
 import {formatCurrency} from "@/lib/utils";
 
-const UpcomingSubscriptionCard = ({ name, price, daysLeft, icon, currency }: UpcomingSubscription) => {
+const ActiveBotCard = ({ name, performance, daysActive, icon, currency }: ActiveBot) => {
     return (
         <View className="upcoming-card">
             <View className="upcoming-row">
                 <Image source={icon} className="upcoming-icon" />
                 <View>
-                    <Text className="upcoming-price">{formatCurrency(price, currency)}</Text>
+                    <Text className="upcoming-price">{performance}{currency}</Text>
                     <Text className="upcoming-meta" numberOfLines={1}>
-                        {daysLeft > 1 ? `${daysLeft} days left` : 'Last day'}
+                        {daysActive} days active
                     </Text>
                 </View>
             </View>
@@ -19,4 +19,4 @@ const UpcomingSubscriptionCard = ({ name, price, daysLeft, icon, currency }: Upc
         </View>
     )
 }
-export default UpcomingSubscriptionCard
+export default ActiveBotCard

@@ -117,8 +117,8 @@ const SignUp = () => {
                                         <Text className="auth-logo-mark-text">R</Text>
                                     </View>
                                     <View>
-                                        <Text className="auth-wordmark">Recurrly</Text>
-                                        <Text className="auth-wordmark-sub">SUBSCRIPTIONS</Text>
+                                        <Text className="auth-wordmark">BrakoutX AI</Text>
+                                        <Text className="auth-wordmark-sub">TRADING BOT</Text>
                                     </View>
                                 </View>
                                 <Text className="auth-title">Verify your email</Text>
@@ -193,13 +193,13 @@ const SignUp = () => {
                                     <Text className="auth-logo-mark-text">R</Text>
                                 </View>
                                 <View>
-                                    <Text className="auth-wordmark">Recurrly</Text>
-                                    <Text className="auth-wordmark-sub">SUBSCRIPTIONS</Text>
+                                    <Text className="auth-wordmark">BrakoutX AI</Text>
+                                    <Text className="auth-wordmark-sub">TRADING BOT</Text>
                                 </View>
                             </View>
                             <Text className="auth-title">Create your account</Text>
                             <Text className="auth-subtitle">
-                                Start tracking your subscriptions and never miss a payment
+                                Start managing your trading bots and algorithm performance
                             </Text>
                         </View>
 

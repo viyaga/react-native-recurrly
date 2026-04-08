@@ -8,49 +8,49 @@ import {icons} from "@/constants/icons";
 import {formatCurrency} from "@/lib/utils";
 import dayjs from "dayjs";
 import ListHeading from "@/components/ListHeading";
-import UpcomingSubscriptionCard from "@/components/UpcomingSubscriptionCard";
-import SubscriptionCard from "@/components/SubscriptionCard";
-import CreateSubscriptionModal from "@/components/CreateSubscriptionModal";
+import ActiveBotCard from "@/components/ActiveBotCard";
+import BotCard from "@/components/BotCard";
+import CreateBotModal from "@/components/CreateBotModal";
 import {useState, useMemo} from "react";
 import { useUser } from '@clerk/expo';
 import { usePostHog } from 'posthog-react-native';
-import { useSubscriptionStore } from "@/lib/subscriptionStore";
+import { useBotStore } from "@/lib/botStore";
+import { ACTIVE_BOTS } from "@/constants/data";
 const SafeAreaView = styled(RNSafeAreaView);
 
 export default function App() {
     const { user } = useUser();
     const posthog = usePostHog();
-    const [expandedSubscriptionId, setExpandedSubscriptionId] = useState<string | null>(null);
+    const [expandedBotId, setExpandedBotId] = useState<string | null>(null);
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const { subscriptions, addSubscription } = useSubscriptionStore();
+    const { bots, addBot } = useBotStore();
 
-    // Get upcoming subscriptions (active subscriptions with renewal date within next 7 days)
-    const upcomingSubscriptions = useMemo(() => {
+    const recentBots = useMemo(() => {
         const now = dayjs();
         const nextWeek = now.add(7, 'days');
-        return subscriptions.filter(sub =>
-            sub.status === 'active' &&
-            dayjs(sub.renewalDate).isAfter(now) &&
-            dayjs(sub.renewalDate).isBefore(nextWeek)
+        return bots.filter(bot =>
+            bot.status === 'active' &&
+            dayjs(bot.renewalDate).isAfter(now) &&
+            dayjs(bot.renewalDate).isBefore(nextWeek)
         ).sort((a, b) => dayjs(a.renewalDate).diff(dayjs(b.renewalDate)));
-    }, [subscriptions]);
+    }, [bots]);
 
-    const handleSubscriptionPress = (item: Subscription) => {
-        const isExpanding = expandedSubscriptionId !== item.id;
-        setExpandedSubscriptionId((currentId) => (currentId === item.id ? null : item.id));
-        posthog.capture(isExpanding ? 'subscription_expanded' : 'subscription_collapsed', {
-            subscription_name: item.name,
-            subscription_id: item.id,
+    const handleBotPress = (item: Bot) => {
+        const isExpanding = expandedBotId !== item.id;
+        setExpandedBotId((currentId) => (currentId === item.id ? null : item.id));
+        posthog.capture(isExpanding ? 'bot_expanded' : 'bot_collapsed', {
+            bot_name: item.name,
+            bot_id: item.id,
         });
     };
 
-    const handleCreateSubscription = (newSubscription: Subscription) => {
-        addSubscription(newSubscription);
-        posthog.capture('subscription_created', {
-            subscription_name: newSubscription.name,
-            subscription_price: newSubscription.price,
-            subscription_frequency: newSubscription.frequency,
-            subscription_category: newSubscription.category,
+    const handleCreateBot = (newBot: Bot) => {
+        addBot(newBot);
+        posthog.capture('bot_created', {
+            bot_name: newBot.name,
+            bot_performance: newBot.performance,
+            bot_frequency: newBot.frequency || 'N/A',
+            bot_strategy: newBot.strategy || 'N/A',
         });
     };
 
@@ -90,41 +90,41 @@ export default function App() {
                             </View>
 
                             <View className="mb-5">
-                                <ListHeading title="Upcoming" />
+                                <ListHeading title="Top Performing Bots" />
 
                                 <FlatList
-                                    data={upcomingSubscriptions}
-                                    renderItem={({ item }) => (<UpcomingSubscriptionCard {...item} />)}
+                                    data={ACTIVE_BOTS}
+                                    renderItem={({ item }) => (<ActiveBotCard {...item} />)}
                                     keyExtractor={(item) => item.id}
                                     horizontal
                                     showsHorizontalScrollIndicator={false}
-                                    ListEmptyComponent={<Text className="home-empty-state">No upcoming renewals yet.</Text>}
+                                    ListEmptyComponent={<Text className="home-empty-state">No active bots.</Text>}
                                 />
                             </View>
 
-                            <ListHeading title="All Subscriptions" />
+                            <ListHeading title="All Bots" />
                         </>
                     )}
-                    data={subscriptions}
+                    data={bots}
                     keyExtractor={(item) => item.id}
                     renderItem={({ item }) => (
-                        <SubscriptionCard
+                        <BotCard
                             {...item}
-                            expanded={expandedSubscriptionId === item.id}
-                            onPress={() => handleSubscriptionPress(item)}
+                            expanded={expandedBotId === item.id}
+                            onPress={() => handleBotPress(item)}
                         />
                     )}
-                    extraData={expandedSubscriptionId}
+                    extraData={expandedBotId}
                     ItemSeparatorComponent={() => <View className="h-4" />}
                     showsVerticalScrollIndicator={false}
-                    ListEmptyComponent={<Text className="home-empty-state">No subscriptions yet.</Text>}
+                    ListEmptyComponent={<Text className="home-empty-state">No bots deployed yet.</Text>}
                     contentContainerClassName="pb-30"
                 />
 
-            <CreateSubscriptionModal
+            <CreateBotModal
                 visible={isModalVisible}
                 onClose={() => setIsModalVisible(false)}
-                onSubmit={handleCreateSubscription}
+                onSubmit={handleCreateBot}
             />
         </SafeAreaView>
     );

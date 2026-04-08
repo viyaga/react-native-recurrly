@@ -12,16 +12,15 @@ declare global {
         icon: ImageSourcePropType;
     }
 
-    interface Subscription {
+    interface Bot {
         id: string;
         icon: ImageSourcePropType;
         name: string;
-        plan?: string;
+        strategy?: string;
         category?: string;
-        paymentMethod?: string;
         status?: string;
         startDate?: string;
-        price: number;
+        performance: number;
         currency?: string;
         billing: string;
         frequency?: string;
@@ -29,24 +28,24 @@ declare global {
         color?: string;
     }
 
-    interface SubscriptionCardProps extends Omit<Subscription, "id"> {
+    interface BotCardProps extends Omit<Bot, "id"> {
         expanded: boolean;
         onPress: () => void;
-        onCancelPress?: () => void;
-        isCancelling?: boolean;
+        onStopPress?: () => void;
+        isStopping?: boolean;
     }
 
-    interface UpcomingSubscription {
+    interface ActiveBot {
         id: string;
         icon: ImageSourcePropType;
         name: string;
-        price: number;
+        performance: number;
         currency?: string;
-        daysLeft: number;
+        daysActive: number;
     }
 
-    interface UpcomingSubscriptionCardProps
-        extends Omit<UpcomingSubscription, "id"> {}
+    interface ActiveBotCardProps
+        extends Omit<ActiveBot, "id"> {}
 
     interface ListHeadingProps {
         title: string;

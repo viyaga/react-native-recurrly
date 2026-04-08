@@ -3,7 +3,7 @@ import React from 'react'
 import {formatCurrency, formatStatusLabel, formatSubscriptionDateTime} from "@/lib/utils";
 import clsx from "clsx";
 
-const SubscriptionCard = ({ name, price, currency, icon, billing, color, category, plan, renewalDate, expanded, onPress, paymentMethod, startDate, status}: SubscriptionCardProps) => {
+const BotCard = ({ name, performance, currency, icon, billing, color, category, strategy, renewalDate, expanded, onPress, startDate, status}: BotCardProps) => {
     return (
         <Pressable onPress={onPress} className={clsx('sub-card', expanded ? 'sub-card-expanded' : 'bg-card')} style={!expanded && color ? { backgroundColor: color } : undefined}>
             <View className="sub-head">
@@ -14,13 +14,13 @@ const SubscriptionCard = ({ name, price, currency, icon, billing, color, categor
                             {name}
                         </Text>
                         <Text numberOfLines={1} ellipsizeMode="tail" className="sub-meta">
-                            {category?.trim() || plan?.trim() || (renewalDate ? formatSubscriptionDateTime(renewalDate) : '')}
+                            {category?.trim() || strategy?.trim() || (renewalDate ? formatSubscriptionDateTime(renewalDate) : '')}
                         </Text>
                     </View>
                 </View>
 
                 <View className="sub-price-box">
-                    <Text className="sub-price">{formatCurrency(price, currency)}</Text>
+                    <Text className="sub-price">{performance}{currency}</Text>
                     <Text className="sub-billing">{billing}</Text>
                 </View>
             </View>
@@ -30,14 +30,14 @@ const SubscriptionCard = ({ name, price, currency, icon, billing, color, categor
                     <View className="sub-details">
                         <View className="sub-row">
                             <View className="sub-row-copy">
-                                <Text className="sub-label">Payment:</Text>
-                                <Text className="sub-value" numberOfLines={1} ellipsizeMode="tail">{paymentMethod?.trim() ?? 'Not provided'}</Text>
+                                <Text className="sub-label">Strategy:</Text>
+                                <Text className="sub-value" numberOfLines={1} ellipsizeMode="tail">{strategy?.trim() ?? 'Not provided'}</Text>
                             </View>
                         </View>
                         <View className="sub-row">
                             <View className="sub-row-copy">
                                 <Text className="sub-label">Category:</Text>
-                                <Text className="sub-value" numberOfLines={1} ellipsizeMode="tail">{(category?.trim() || plan?.trim()) ?? 'Not provided'}</Text>
+                                <Text className="sub-value" numberOfLines={1} ellipsizeMode="tail">{(category?.trim() || strategy?.trim()) ?? 'Not provided'}</Text>
                             </View>
                         </View>
                         <View className="sub-row">
@@ -64,4 +64,4 @@ const SubscriptionCard = ({ name, price, currency, icon, billing, color, categor
         </Pressable>
     )
 }
-export default SubscriptionCard
+export default BotCard
